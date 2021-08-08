@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TodosContext } from "context/todos";
+import Todo from "components/Todo"
 
 const Main = () => {
     const [todosState, dispatch] = useContext(TodosContext);
-    console.log('todosState', todosState)
+    const [editingId, setEditingId] = useState(null);
     const noTodosClass = todosState.todos.length === 0 ? 'hidden' : '';
     const getVisibleTodos = () => {
         if (todosState.filter === 'active') {
@@ -29,7 +30,11 @@ const Main = () => {
             <label htmlFor="toggle-all">Mark all as completed</label>
             <ul className="todo-list">
                 {visibleTodos.map(todo => (
-                    <li key={todo.id}>{todo.text}</li>
+                    <Todo 
+                    key={todo.id} 
+                    todo={todo} 
+                    isEditing={editingId === todo.id} 
+                    setEditingId={setEditingId}/>
                 ))}
             </ul>
         </section>

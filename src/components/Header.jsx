@@ -3,7 +3,7 @@ import { enterCode } from "helpers/keycodes";
 import { TodosContext } from "context/todos";
 const Header = () => {
     const [text, setText] = useState("");
-    const [state, dispatch] = useContext(TodosContext)
+    const [, dispatch] = useContext(TodosContext)
     const changeText = event => {
         setText(event.target.value);
     }
@@ -21,7 +21,7 @@ const Header = () => {
             <h1>To-do</h1>
             <input
                 className="new-todo"
-                placeholder="Agregar a la lista de tareas"
+                placeholder="Add to list"
                 autoFocus
                 value={text}
                 onChange={changeText}
